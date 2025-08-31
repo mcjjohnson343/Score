@@ -20,15 +20,14 @@ export default function Home() {
 
     fetchScores();
     const interval = setInterval(fetchScores, 30000); // refresh every 30s
-    return () => clearInterval(interval);
-  }, []);
+    return (
+  <main className="p-6">
+    <h1 className="text-2xl font-bold mb-4">🏈 NFL Live Scores</h1>
 
-  return (
-    <main className="p-6">
-      <h1 className="text-2xl font-bold mb-4">🏈 NFL Live Scores</h1>
-     <a 
-      href="YOUR_STRIPE_LINK_HERE" 
-      target="_blank" 
+    {/* ✅ Stripe Subscribe Button */}
+    <a 
+      href="https://buy.stripe.com/test_8x23cn7f89Ku5RSfii" 
+      target="_blank"
       style={{
         display: "inline-block",
         backgroundColor: "#28a745",
@@ -43,16 +42,19 @@ export default function Home() {
       }}
     >
       🚀 Subscribe Now
-    </a>https://buy.stripe.com/test_8x23cn7f89Ku5RSfrOffy00
-  {games.length === 0 && <p>Loading scores...</p>}
+    </a>
+
+    {games.length === 0 ? (
+      <p>Loading scores...</p>
+    ) : (
       <ul>
         {games.map((game) => (
-          <li key={game.id} className="border rounded p-3 my-2">
+          <li key={game.id} className="border rounded p-2 mb-2">
             <p className="font-semibold">{game.name}</p>
-            <p>Status: {game.competitions[0].status.type.description}</p>
+            <p>Status: {game.competitions[0].status?.type?.description || "In Progress"}</p>
           </li>
         ))}
       </ul>
-    </main>
-  );
-}
+    )}
+  </main>
+);
