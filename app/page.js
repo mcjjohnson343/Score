@@ -1,30 +1,22 @@
-"use client";
-import { useState, useEffect } from "react";
-
-export default function Home() {
-  const [score, setScore] = useState({ teamA: 0, teamB: 0 });
-
-  // Function to randomize scores
-  const updateScore = () => {
-    setScore({
-      teamA: Math.floor(Math.random() * 50),
-      teamB: Math.floor(Math.random() * 50),
-    });
-  };
-
-  // Update every 30 seconds
-  useEffect(() => {
-    updateScore(); // first run
-    const interval = setInterval(updateScore, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
+export default function Page() {
   return (
-    <main style={{ textAlign: "center", padding: "50px", fontFamily: "Arial" }}>
-      <h1>🏈 Live Scoreboard</h1>
-      <h2>Team A: {score.teamA}</h2>
-      <h2>Team B: {score.teamB}</h2>
-      <p>Scores refresh every 30 seconds automatically ⏳</p>
+    <main style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
+      <h1>🏈 Live Scoreboard Demo</h1>
+      <p>This page updates every 30 seconds with fake scores.</p>
+      <div id="score">Loading score...</div>
+
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          function updateScore() {
+            const home = Math.floor(Math.random() * 50);
+            const away = Math.floor(Math.random() * 50);
+            document.getElementById("score").innerText =
+              "Home " + home + " - " + away + " Away";
+          }
+          updateScore();
+          setInterval(updateScore, 30000);
+        `
+      }} />
     </main>
   );
 }
