@@ -26,7 +26,25 @@ export default function Home() {
   return (
     <main className="p-6">
       <h1 className="text-2xl font-bold mb-4">🏈 NFL Live Scores</h1>
-      {games.length === 0 && <p>Loading scores...</p>}
+     <a 
+      href="YOUR_STRIPE_LINK_HERE" 
+      target="_blank" 
+      style={{
+        display: "inline-block",
+        backgroundColor: "#28a745",
+        color: "white",
+        fontSize: "18px",
+        fontWeight: "bold",
+        padding: "12px 24px",
+        borderRadius: "8px",
+        textDecoration: "none",
+        marginBottom: "20px",
+        marginTop: "10px"
+      }}
+    >
+      🚀 Subscribe Now
+    </a>https://buy.stripe.com/test_8x23cn7f89Ku5RSfrOffy00
+  {games.length === 0 && <p>Loading scores...</p>}
       <ul>
         {games.map((game) => (
           <li key={game.id} className="border rounded p-3 my-2">
